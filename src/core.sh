@@ -689,8 +689,8 @@ uninstall() {
     fi
     [[ $is_install_sh ]] && return # reinstall
     _green "\n卸载完成!"
-    msg "脚本哪里需要完善? 请反馈"
-    msg "反馈问题) $(msg_ul https://github.com/${is_sh_repo}/issues)\n"
+    #msg "脚本哪里需要完善? 请反馈"
+    #msg "反馈问题) $(msg_ul https://github.com/${is_sh_repo}/issues)\n"
 }
 
 # manage run status
@@ -1282,7 +1282,7 @@ info() {
                     is_can_change=(0 1 2 3 4)
                     is_info_show=(0 1 2 10 4 6 7 8)
                 }
-                is_url="$is_protocol://$uuid@$host:$is_https_port?encryption=none&security=tls&type=$net&host=$host&path=$path#$net-$host"
+                is_url="$is_protocol://$uuid@$host:$is_https_port?encryption=none&security=tls&type=$net&host=$host&path=$path#$host"
             }
             [[ $is_caddy ]] && is_can_change+=(11)
             is_info_str=($is_protocol $is_addr $is_https_port $uuid $net $host $path 'tls')
@@ -1311,27 +1311,27 @@ info() {
     ss)
         is_can_change=(0 1 4 6)
         is_info_show=(0 1 2 10 11)
-        is_url="ss://$(echo -n ${ss_method}:${ss_password} | base64 -w 0)@${is_addr}:${port}#$net-${is_addr}"
+        is_url="ss://$(echo -n ${ss_method}:${ss_password} | base64 -w 0)@${is_addr}:${port}#${is_addr}"
         is_info_str=($is_protocol $is_addr $port $ss_password $ss_method)
         ;;
     trojan)
         is_insecure=1
         is_can_change=(0 1 4)
         is_info_show=(0 1 2 10 4 8 20)
-        is_url="$is_protocol://$password@$is_addr:$port?type=tcp&security=tls&allowInsecure=1#$net-$is_addr"
+        is_url="$is_protocol://$password@$is_addr:$port?type=tcp&security=tls&allowInsecure=1#$is_addr"
         is_info_str=($is_protocol $is_addr $port $password tcp tls true)
         ;;
     hy*)
         is_can_change=(0 1 4)
         is_info_show=(0 1 2 10 8 9 20)
-        is_url="$is_protocol://$password@$is_addr:$port?alpn=h3&insecure=1#$net-$is_addr"
+        is_url="$is_protocol://$password@$is_addr:$port?alpn=h3&insecure=1#$is_addr"
         is_info_str=($is_protocol $is_addr $port $password tls h3 true)
         ;;
     tuic)
         is_insecure=1
         is_can_change=(0 1 5)
         is_info_show=(0 1 2 3 8 9 20 21)
-        is_url="$is_protocol://$uuid:@$is_addr:$port?alpn=h3&allow_insecure=1&congestion_control=bbr#$net-$is_addr"
+        is_url="$is_protocol://$uuid:@$is_addr:$port?alpn=h3&allow_insecure=1&congestion_control=bbr#$is_addr"
         is_info_str=($is_protocol $is_addr $port $uuid tls h3 true bbr)
         ;;
     reality)
@@ -1346,7 +1346,7 @@ info() {
             is_info_show=(${is_info_show[@]/15/})
         }
         is_info_str=($is_protocol $is_addr $port $uuid $is_flow $is_net_type reality $is_servername chrome $is_public_key)
-        is_url="$is_protocol://$uuid@$ip:$port?encryption=none&security=reality&flow=$is_flow&type=$is_net_type&sni=$is_servername&pbk=$is_public_key&fp=chrome#$net-$is_addr"
+        is_url="$is_protocol://$uuid@$ip:$port?encryption=none&security=reality&flow=$is_flow&type=$is_net_type&sni=$is_servername&pbk=$is_public_key&fp=chrome#$is_addr"
         ;;
     direct)
         is_can_change=(0 1 7 8)
@@ -1357,7 +1357,7 @@ info() {
         is_can_change=(0 1 12 4)
         is_info_show=(0 1 2 19 10)
         is_info_str=($is_protocol $is_addr $port $is_socks_user $is_socks_pass)
-        is_url="socks://$(echo -n ${is_socks_user}:${is_socks_pass} | base64 -w 0)@${is_addr}:${port}#$net-${is_addr}"
+        is_url="socks://$(echo -n ${is_socks_user}:${is_socks_pass} | base64 -w 0)@${is_addr}:${port}#${is_addr}"
         ;;
     esac
     [[ $is_dont_show_info || $is_gen || $is_dont_auto_exit ]] && return # dont show info
