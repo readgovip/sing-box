@@ -1,7 +1,7 @@
 #!/bin/bash
 
-author=233boy
-# github=https://github.com/233boy/sing-box
+author=readgovip
+# github=https://github.com/readgovip/sing-box
 
 # bash fonts colors
 red='\e[31m'
@@ -426,8 +426,8 @@ main() {
 
     load core.sh
     # create a reality config
-    add reality
     add h2
+	add reality
     # remove tmp dir and exit.
     exit_and_del_tmpdir ok
 }
