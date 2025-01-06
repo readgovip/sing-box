@@ -1324,7 +1324,8 @@ info() {
     hy*)
         is_can_change=(0 1 4)
         is_info_show=(0 1 2 10 8 9 20)
-        is_url="$is_protocol://$password@$is_addr:$port?alpn=h3&insecure=1#$is_addr"
+        is_url="$is_protocol://$password@$is_addr:$port?alpn=h3&insecure=1#$(echo $is_addr | awk -F'.' '{print $(NF-1)"."$NF}')"
+		
         is_info_str=($is_protocol $is_addr $port $password tls h3 true)
         ;;
     tuic)
@@ -1346,7 +1347,7 @@ info() {
             is_info_show=(${is_info_show[@]/15/})
         }
         is_info_str=($is_protocol $is_addr $port $uuid $is_flow $is_net_type reality $is_servername chrome $is_public_key)
-        is_url="$is_protocol://$uuid@$ip:$port?encryption=none&security=reality&flow=$is_flow&type=$is_net_type&sni=$is_servername&pbk=$is_public_key&fp=chrome#$is_addr"
+        is_url="$is_protocol://$uuid@$ip:$port?encryption=none&security=reality&flow=$is_flow&type=$is_net_type&sni=$is_servername&pbk=$is_public_key&fp=chrome#$(echo $is_addr | awk -F'.' '{print $(NF-1)"."$NF}')"
         ;;
     direct)
         is_can_change=(0 1 7 8)
