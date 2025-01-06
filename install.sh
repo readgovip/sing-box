@@ -427,12 +427,6 @@ main() {
     # create a reality config
     add reality
     
-<<<<<<< HEAD
-=======
-	load core.sh
-	# create a hy2 config
-	add hy
->>>>>>> 9ed81de0dc618b0ff73089367dbba2078dd6e2e3
     # remove tmp dir and exit.
     exit_and_del_tmpdir ok
 }

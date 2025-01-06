@@ -839,7 +839,7 @@ add() {
     esac
 
     [[ $1 && ! $is_change ]] && {
-        msg "\n使用协议: $is_new_protocol"
+        #msg "\n使用协议: $is_new_protocol"
         # err msg tips
         is_err_tips="\n\n请使用: $(_green $is_core add $1 $is_add_opts) 来添加 $is_new_protocol 配置"
     }
