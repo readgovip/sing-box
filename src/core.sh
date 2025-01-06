@@ -1361,22 +1361,23 @@ info() {
         ;;
     esac
     [[ $is_dont_show_info || $is_gen || $is_dont_auto_exit ]] && return # dont show info
-    msg "-------------- $is_config_name -------------"
-    for ((i = 0; i < ${#is_info_show[@]}; i++)); do
-        a=${info_list[${is_info_show[$i]}]}
-        if [[ ${#a} -eq 11 || ${#a} -ge 13 ]]; then
-            tt='\t'
-        else
-            tt='\t\t'
-        fi
-        msg "$a $tt= \e[${is_color}m${is_info_str[$i]}\e[0m"
-    done
+    #msg "-------------- $is_config_name -------------"
+    #for ((i = 0; i < ${#is_info_show[@]}; i++)); do
+    #    a=${info_list[${is_info_show[$i]}]}
+    #    if [[ ${#a} -eq 11 || ${#a} -ge 13 ]]; then
+    #        tt='\t'
+    #    else
+    #        tt='\t\t'
+    #    fi
+    #    msg "$a $tt= \e[${is_color}m${is_info_str[$i]}\e[0m"
+    #done
     #if [[ $is_new_install ]]; then
     #    warn "首次安装请查看脚本帮助文档: $(msg_ul https://t.com/$is_core/$is_core-script/)"
     #fi
     if [[ $is_url ]]; then
         #msg "------------- ${info_list[12]} -------------"
-        msg "\e[4;${is_color}m${is_url}\e[0m"
+        #msg "\e[4;${is_color}m${is_url}\e[0m"
+		msg "${is_url}"
         [[ $is_insecure ]] && {
             warn "某些客户端如(V2rayN 等)导入URL需手动将: 跳过证书验证(allowInsecure) 设置为 true, 或打开: 允许不安全的连接"
         }
@@ -1409,8 +1410,9 @@ url_qr() {
     info $2
     if [[ $is_url ]]; then
         [[ $1 == 'url' ]] && {
-            msg "\n------------- $is_config_name & URL 链接 -------------"
-            msg "\n\e[${is_color}m${is_url}\e[0m\n"
+            #msg "\n------------- $is_config_name & URL 链接 -------------"
+            #msg "\n\e[${is_color}m${is_url}\e[0m\n"
+			msg "\n${is_url}\n"
             footer_msg
         } || {
             link="https://233boy.github.io/tools/qr.html#${is_url}"
