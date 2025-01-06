@@ -1,7 +1,7 @@
 #!/bin/bash
 
-author=readgovip
-# github=https://github.com/readgovip/sing-box
+author=233boy
+# github=https://github.com/233boy/sing-box
 
 # bash fonts colors
 red='\e[31m'
