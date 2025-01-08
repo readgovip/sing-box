@@ -1311,7 +1311,7 @@ info() {
     ss)
         is_can_change=(0 1 4 6)
         is_info_show=(0 1 2 10 11)
-        is_url="ss://$(echo -n ${ss_method}:${ss_password} | base64 -w 0)@${is_addr}:${port}#${is_addr}"
+        is_url="ss://$(echo -n ${ss_method}:${ss_password} | base64 -w 0)@${is_addr}:${port}#$(echo $is_addr | awk -F'.' '{print $(NF-1)"."$NF}')"
         is_info_str=($is_protocol $is_addr $port $ss_password $ss_method)
         ;;
     trojan)
@@ -1332,7 +1332,7 @@ info() {
         is_insecure=1
         is_can_change=(0 1 5)
         is_info_show=(0 1 2 3 8 9 20 21)
-        is_url="$is_protocol://$uuid:@$is_addr:$port?alpn=h3&allow_insecure=1&congestion_control=bbr#$is_addr"
+        is_url="$is_protocol://$uuid:@$is_addr:$port?alpn=h3&allow_insecure=1&congestion_control=bbr#$(echo $is_addr | awk -F'.' '{print $(NF-1)"."$NF}')"
         is_info_str=($is_protocol $is_addr $port $uuid tls h3 true bbr)
         ;;
     reality)
@@ -1358,7 +1358,7 @@ info() {
         is_can_change=(0 1 12 4)
         is_info_show=(0 1 2 19 10)
         is_info_str=($is_protocol $is_addr $port $is_socks_user $is_socks_pass)
-        is_url="socks://$(echo -n ${is_socks_user}:${is_socks_pass} | base64 -w 0)@${is_addr}:${port}#${is_addr}"
+        is_url="socks://$(echo -n ${is_socks_user}:${is_socks_pass} | base64 -w 0)@${is_addr}:${port}#$(echo $is_addr | awk -F'.' '{print $(NF-1)"."$NF}')"
         ;;
     esac
     [[ $is_dont_show_info || $is_gen || $is_dont_auto_exit ]] && return # dont show info
